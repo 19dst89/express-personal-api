@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -97,6 +97,19 @@ app.get('/api', function apiIndex(req, res) {
     ]
   })
 });
+
+var profileStuff = {
+        description: "Data about me", // Info about Daniel
+        name: "Daniel Thompson",
+        githubLink: "https://github.com/19dst89",
+        githubProfileImage: "https://avatars2.githubusercontent.com/u/19444505?v=3&u=9f88aee27b50439d42594fff366e079fe8939113&s=400",
+        personalSiteLink: "www.google.com",
+        currentCity: "San Francisco",
+        pets: [{name: "Lynx", type: "Cat"}, {name: "Ziggy", type: "Cat"}, {name: "Marley", type: "Dog", breed: "Labrador"}, {name: "Bailey", type: "Dog", breed: "Labrador"}]
+      }
+app.get('/api/profile', function(req, res){
+  res.json(profileStuff);
+})
 
 /**********
  * SERVER *
