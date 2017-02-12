@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var PlaceSchema = new Schema({
   city: String,
-  country: String
+  country: String,
   description: String,
   yearWent: String,
   homeCity: String,

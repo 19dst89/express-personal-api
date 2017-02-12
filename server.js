@@ -111,6 +111,64 @@ app.get('/api/profile', function(req, res){
   res.json(profileStuff);
 })
 
+
+
+// Places Routes
+
+// Get all the places
+app.get('/api/places', function(req, res){
+  db.Place.find({})
+  .exec(function(err, places){
+    if (err) {
+      res.status(500).send(err);
+      return;
+    }
+    res.json(places);
+  });
+});
+
+// GET one place by id
+app.get('/api/places/:id', function(req, res){
+  db.Place.findById(req.params.id)
+    .exec(function(err, place){
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+      res.json(place);
+    });
+});
+
+// create new place
+app.post('/api/places', function(req, res) {
+  var newPlace = new db.Place({
+    city: req.body.city,
+    country: req.body.country,
+    description: req.body.description,
+    yearWent: req.body.yearWent,
+    homeCity: req.body.homeCity,
+    homeCountry: req.body.homeCountry
+  });
+  newPlace.save(function(err, savedPlace){
+    if (err) {
+     return console.log(err);
+    }
+    res.json(savedPlace);
+  });
+});
+
+// delete a place
+app.delete('/api/places/:id', function(req, res) {
+  var placeId = req.params.id;
+
+  db.Place.findOneAndRemove({ _id: placeId }, function(err, deletedPlace) {
+    if (err) {
+      return console.log(err);
+    }
+    res.json(deletedPlace);
+  });
+});
+
 /**********
  * SERVER *
  **********/
