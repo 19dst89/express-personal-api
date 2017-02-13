@@ -1,5 +1,3 @@
-console.log("Sanity Check: JS is working!");
-
 $(document).ready(function(){
   // display all places
   $("#places").click(function(){
@@ -13,10 +11,8 @@ $(document).ready(function(){
       error: onErrorPlaces
     })
 
-    // ($('#nextractor').length < 0)
-
-
     function onSuccessPlaces(placesArray){
+      $(".places").remove();
       placesArray.forEach(function(place){
         $(".places-wrapper").append(`
           <div class="places">
@@ -49,8 +45,10 @@ $(document).ready(function(){
       error: onErrorProfile
     })
     function onSuccessProfile(profileObject){
+      $(".profile").remove();
       $(".profile-wrapper").append(`
         <div class="profile col-md-6">
+        <div>
           <h3>${profileObject.name}</h3>
           <img class="img-responsive" src="${profileObject.githubProfileImage}">
         </div>
@@ -61,6 +59,7 @@ $(document).ready(function(){
               <li>${profileObject.pets[2].name} my parents ${profileObject.pets[3].breed} ${profileObject.pets[2].type}</li>
               <li>${profileObject.pets[3].name} my parents ${profileObject.pets[3].breed} ${profileObject.pets[3].type}</li>
             </ul>
+          </div>
           </div>
         `)
     }

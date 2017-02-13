@@ -23,17 +23,10 @@ var place_list = [
   }
 ];
 
-// db.Campsite.create(new_campsite, function(err, campsite){
-//   if (err){
-//     return console.log("Error:", err);
-//   }
-
-//   console.log("Created new campsite", campsite._id)
-//   process.exit(); // we're all done! Exit the program.
-// })
-
-db.Place.create(place_list, function(err, places){
-  if (err) { return console.log('err', err); }
-  console.log("created", places.length, "places");
-  process.exit();
-});
+db.Place.remove({}, function(err){
+  db.Place.create(place_list, function(err, places){
+    if (err) { return console.log('err', err); }
+    console.log("created", places.length, "places");
+    process.exit();
+  });
+})
