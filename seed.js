@@ -14,7 +14,7 @@ var place_list = [
     homeCountry: "Qatar"
   },
   {
-    city: "N/A",
+    city: "Zurich",
     country: "Switzerland",
     description: "Went snowboarding for 2 weeks for a school trip",
     yearWent: "2004",
